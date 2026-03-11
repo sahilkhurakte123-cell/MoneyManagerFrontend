@@ -15,25 +15,24 @@ const App = () => {
       <Toaster />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Root />} />
-          <Route path="/dashboard" element={<Home/>} />
+          <Route path="/" element={<Landing />} />        {/* ✅ landing is now the root */}
+          <Route path="/dashboard" element={<Root />} />  {/* ✅ dashboard checks auth */}
           <Route path="/income" element={<Income/>} />
           <Route path="/expense" element={<Expense/>} />
           <Route path="/category" element={<Category/>} />
           <Route path="/filter" element={<Filter/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
-          <Route path="/" element={<Landing />} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
     </>
   )
 }
 
-const Root = ()=> {
+const Root = () => {
   const isAuthenticated = !!localStorage.getItem("token");
   return isAuthenticated ? (
-    <Navigate to="/dashboard" />
+    <Home />
   ) : (
     <Navigate to="/login" />
   )
