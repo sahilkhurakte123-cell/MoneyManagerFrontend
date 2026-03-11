@@ -1,0 +1,41 @@
+import logo from "./logo.png";
+import login_bg from "./login_bg.png";
+import { Coins, FunnelPlus, LayoutDashboard, List, Wallet } from "lucide-react";
+
+export const assets = {
+  logo,
+  login_bg,
+}
+
+export const SIDE_BAR_DATA = [
+  {
+    id: "1",
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    path: "/dashboard",
+  },
+  {
+    id: "2",
+    label: "Category",
+    icon: List,
+    path: "/category",
+  },
+  {
+    id: "3",
+    label: "Expense",
+    icon: Coins,
+    path: "/expense",
+  },
+  {
+    id: "4",
+    label: "Income",
+    icon: Wallet,
+    path: "/income",
+  },
+  {
+    id: "5",
+    label: "Filter",
+    icon: FunnelPlus,
+    path: "/filter",
+  }
+]
