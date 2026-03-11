@@ -7,6 +7,7 @@ import Filter from "./pages/Filter";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import {Toaster} from "react-hot-toast";
+import Landing from "./pages/Landing";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/filter" element={<Filter/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
+          <Route path="/" element={<Landing />} />
         </Routes>
     </BrowserRouter>
     </>
