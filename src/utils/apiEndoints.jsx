@@ -1,5 +1,5 @@
-// export const BASE_URL = "https://moneymanager-5n2s.onrender.com"
-export const BASE_URL = "http://localhost:8080/"
+export const BASE_URL = "https://moneymanager-5n2s.onrender.com"
+// export const BASE_URL = "http://localhost:8080/"
 const CLOUDINARY_CLOUD_NAME = "dqouyzlfw";
 
 export const API_ENDPOINTS = {
