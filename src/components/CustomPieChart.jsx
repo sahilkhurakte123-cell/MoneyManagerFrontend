@@ -1,6 +1,9 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { useTheme } from "../context/ThemeContext";
 
 const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) => {
+  const { darkMode } = useTheme();
+
   const renderCustomLabel = ({ cx, cy }) => {
     return (
       <>
@@ -10,7 +13,7 @@ const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) =>
           textAnchor="middle"
           dominantBaseline="middle"
           className="text-sm"
-          fill="#666"
+          fill={darkMode ? "#9ca3af" : "#666"}
           fontSize={14}
         >
           {label}
@@ -20,7 +23,7 @@ const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) =>
           y={cy + 15}
           textAnchor="middle"
           dominantBaseline="middle"
-          fill="#111"
+          fill={darkMode ? "#f3f4f6" : "#111"}
           fontSize={20}
           fontWeight="bold"
         >
@@ -49,8 +52,18 @@ const CustomPieChart = ({ data, label, totalAmount, colors, showTextAnchor }) =>
         </Pie>
         <Tooltip
           formatter={(value) => [`₹${value.toLocaleString()}`, ""]}
+          contentStyle={{
+            backgroundColor: darkMode ? "#1f2937" : "#ffffff",
+            borderColor: darkMode ? "#374151" : "#e5e7eb",
+            color: darkMode ? "#f3f4f6" : "#111827",
+            borderRadius: "8px"
+          }}
         />
-        <Legend />
+        <Legend
+          formatter={(value) => (
+            <span style={{ color: darkMode ? "#d1d5db" : "#374151" }}>{value}</span>
+          )}
+        />
       </PieChart>
     </ResponsiveContainer>
   );

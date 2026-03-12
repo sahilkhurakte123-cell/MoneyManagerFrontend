@@ -15,11 +15,11 @@ const DeleteAlertPopup = ({content, onDelete}) => {
 
   return (
     <div>
-      <p className="text-sm">{content}</p>
+      <p className="text-sm text-gray-700 dark:text-gray-300">{content}</p>
       <div className="flex justify-end mt-6">
         <button
           disabled={loading}
-          className="flex justify-center items-center bg-gray-100 text-red-400 px-3 py-1 rounded-lg border border-black hover:bg-red-200"
+          className="flex justify-center items-center gap-2 bg-gray-100 dark:bg-gray-700 text-red-400 dark:text-red-400 px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors duration-200"
           onClick={handleDelete}
           type="button"
         >

@@ -25,7 +25,6 @@ const IncomeForm = ({onAddIncome, categories}) => {
 
   const handleAddIncome = async () => {
     setLoading(true);
-
     try {
       await onAddIncome(income);
     } finally {
@@ -82,7 +81,7 @@ const IncomeForm = ({onAddIncome, categories}) => {
         <button 
           onClick={handleAddIncome}
           disabled={loading}
-          className="flex items-center gap-2 px-4 py-2 bg-green-100 hover:bg-green-200 text-green-700 font-medium rounded-lg border border-green-100 cursor-pointer transition-colors">
+          className="flex items-center gap-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 hover:bg-green-200 dark:hover:bg-green-900/50 text-green-700 dark:text-green-400 font-medium rounded-lg border border-green-100 dark:border-green-800 cursor-pointer transition-colors">
             {loading? (
              <><LoaderCircle className="w-4 h-4 animate-spin" /> Adding...</> 
             ) : (

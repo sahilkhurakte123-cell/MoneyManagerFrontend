@@ -67,7 +67,7 @@ const CategoryForm = ({onAddCategory, initialCategoryData, isEditing}) => {
           disabled={loading}
           onClick={handleSubmit} 
           type="button" 
-          className="bg-green-400 add-btn add-btn-fill border border-black-100 rounded-lg px-2 py-2">
+          className="bg-green-400 hover:bg-green-500 dark:bg-green-600 dark:hover:bg-green-700 text-black dark:text-white border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-2 flex items-center gap-2 transition-colors duration-200">
           {loading?(
             <>
               <LoaderCircle className="w-4 h-4 animate-spin" />

@@ -28,12 +28,12 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
   return (
     <div className="card">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">Income Sources</h5>
+        <h5 className="text-lg font-medium text-gray-800 dark:text-gray-100">Income Sources</h5>
         <div className="flex items-center justify-end gap-2">
           <button 
             disabled={loading}
             onClick={handleEmail}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm cursor-pointer hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             {loading ? (
               <>
@@ -42,23 +42,23 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
               </>
             ) : (
               <>
-                <Mail size={16} className="text-green-500"/> Email
+                <Mail size={16} className="text-green-500 dark:text-green-400"/> Email
               </>
             )}
           </button>
           <button
             disabled={loading}
             onClick={handleDownload}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg text-sm cursor-pointer hover:bg-gray-300"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
           >
-             {loading ? (
+            {loading ? (
               <>
                 <LoaderCircle className="w-4 h-4 animate-spin" />
                 Downloading...
               </>
             ) : (
               <>
-                <Download size={16} className="text-green-500"/>Download
+                <Download size={16} className="text-green-500 dark:text-green-400"/> Download
               </>
             )}
           </button>
@@ -66,7 +66,6 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
-        {/* {display the incomes} */}
         {transactions?.map((income) => (
           <TransactionInfoCard
             key={income.id}
@@ -78,7 +77,6 @@ const IncomeList = ({transactions, onDelete, onDownload, onEmail}) => {
           />
         ))}
       </div>
-
     </div>
   )
 }

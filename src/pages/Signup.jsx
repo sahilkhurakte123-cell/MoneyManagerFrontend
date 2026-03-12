@@ -17,7 +17,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const[isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(null);
 
   const navigate = useNavigate();
@@ -44,15 +44,13 @@ const Signup = () => {
     }
     setError("");
 
-    //signup api call
-
     try {
       if(profilePhoto){
         const imgUrl = await uploadProfileImg(profilePhoto);
         profileImgUrl = imgUrl || "";
       }
       const response = await axiosConfig.post(API_ENDPOINTS.REGISTER, {
-        fullname:fullName,
+        fullname: fullName,
         email,
         password,
         profileImgUrl
@@ -64,84 +62,86 @@ const Signup = () => {
     } catch (error) {
       console.error("Something went wrong", error);
       setError(error.message);
-    }finally{
+    } finally {
       setIsLoading(false);
     }
-
   }
 
   return (
-
     <div className="h-screen w-full relative flex items-center justify-center overflow-hidden">
       <img src={assets.login_bg} alt="Background" className="absolute inset-0 w-full h-full object-cover filter blur-sm" />
 
-    <div className="relative z-10 w-full max-w-lg px-6">
-      <div className="bg-white bg-opacity-95 backdrop-blur-sm rounded-lg shadow-2xl p-8 max-h-[90vh] overflow-y-auto">
-        <h3 className="text-2xl font-semibold text-black text-center mb-2">
-          Create an Account
-        </h3>
-        <p className="text-sm text-slate-700 text-center mb-8">
-          Start tracking your money now!
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex justify-center mb-6">
-            <ProfilePhotoSelector image={profilePhoto} setImage={setProfilePhoto} />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              label="Full Name"
-              placeholder="Enter full name"
-              type="text"
-            />
-
-            <Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              label="Email"
-              placeholder="Enter email"
-              type="text"
-            />
-
-            <div className="col-span-2">
-              <Input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                label="Password"
-                placeholder="*******"
-                type="password"
-              />
-            </div>
-          </div>
-          {error && (
-            <p className="text-red-800 text-sm text-center bg-red-50 p-2 rounded">
-              {error}
-            </p>
-          )}
-
-          <button disabled={isLoading} className={`w-full py-3 text-lg font-medium bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2 ${isLoading? 'opacity-60 cursor-not-allowed' : ''}`} type="submit">
-            {isLoading? (
-              <>
-                <LoaderCircle className="animate-spin w-5 h-5" />
-                Signing up...
-              </>
-            ):(
-              "Sign Up"
-            )}
-          </button>
-
-          <p className="text-sm text-slate-800 text-center mt-6">
-            Already have an account?
-            <Link to="/login" className="font-medium text-primary underline hover:text-primary-dark transition-colors">Login</Link>
+      <div className="relative z-10 w-full max-w-lg px-6">
+        <div className="bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm rounded-lg shadow-2xl p-8 max-h-[90vh] overflow-y-auto">
+          <h3 className="text-2xl font-semibold text-black dark:text-gray-100 text-center mb-2">
+            Create an Account
+          </h3>
+          <p className="text-sm text-slate-700 dark:text-slate-400 text-center mb-8">
+            Start tracking your money now!
           </p>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex justify-center mb-6">
+              <ProfilePhotoSelector image={profilePhoto} setImage={setProfilePhoto} />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                label="Full Name"
+                placeholder="Enter full name"
+                type="text"
+              />
 
-        </form>
+              <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                label="Email"
+                placeholder="Enter email"
+                type="text"
+              />
+
+              <div className="col-span-2">
+                <Input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  label="Password"
+                  placeholder="*******"
+                  type="password"
+                />
+              </div>
+            </div>
+
+            {error && (
+              <p className="text-red-800 dark:text-red-400 text-sm text-center bg-red-50 dark:bg-red-900/30 p-2 rounded">
+                {error}
+              </p>
+            )}
+
+            <button 
+              disabled={isLoading} 
+              className={`w-full py-3 text-lg font-medium bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg transition-colors flex items-center justify-center gap-2 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`} 
+              type="submit"
+            >
+              {isLoading ? (
+                <>
+                  <LoaderCircle className="animate-spin w-5 h-5" />
+                  Signing up...
+                </>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+
+            <p className="text-sm text-slate-800 dark:text-slate-400 text-center mt-6">
+              Already have an account?{" "}
+              <Link to="/login" className="font-medium text-green-600 dark:text-green-400 underline hover:text-green-800 dark:hover:text-green-300 transition-colors">
+                Login
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
-    
-    </div>
-    
   );
 };
 

@@ -6,13 +6,13 @@ const Transactions = ({transactions, onMore, type, title}) => {
   return (
     <div className="card">
       <div className="flex items-center justify-between">
-        <h5 className="text-lg">{title}</h5>
+        <h5 className="text-lg font-medium text-gray-800 dark:text-gray-100">{title}</h5>
         <button className="card-btn" onClick={onMore}>
           More <ArrowRight className="text-base" size={15} />
         </button>
       </div>
 
-      <div className="mt-6 ">
+      <div className="mt-6">
         {transactions?.slice(0,5)?.map(item => (
           <TransactionInfoCard 
             key={item.id}

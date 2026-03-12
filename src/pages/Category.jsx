@@ -19,19 +19,16 @@ const Category = () => {
 
   const fetchCategoryDetails = async () => {
     if(loading) return;
-
     setLoading(true);
-
     try {
       const response = await axiosConfig.get(API_ENDPOINTS.GET_ALL_CATEGORIES);
       if(response.status == 200){
-        console.log(response.data);
         setCategoryData(response.data);
       }
     } catch (error) {
       console.error("Error fetching data", error);
       toast.error(error.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   }  
@@ -41,23 +38,18 @@ const Category = () => {
   },[]);
 
   const handleAddCategory = async (category) => {
-
     const {icon, name, type} = category;
-
     if(!name.trim()){
       toast.error("Name not present");
       return;
     }
-
     const isDuplicate = categoryData.some((category) => {
       return category.name.toLowerCase === name.trim().toLowerCase();
     })
-
     if(isDuplicate){
       toast.error("Category already exists");
       return;
     }
-
     try {
       const response = await axiosConfig.post(API_ENDPOINTS.ADD_CATEGORY, {icon, name, type});
       if(response.status == 200){
@@ -78,17 +70,14 @@ const Category = () => {
 
   const handleUpdateCategory = async (updatedCategory) => {
     const {id, name, type, icon} = updatedCategory;
-
     if(!name.trim()){
       toast.error("Category name required");
       return;
     }
-
     if(!id){
       toast.error("Category not selected");
       return;
     }
-
     try {
       const response = await axiosConfig.put(API_ENDPOINTS.UPDATE_CATEGORY(id), {name, type, icon})
       if(response.status === 200){
@@ -98,49 +87,49 @@ const Category = () => {
         fetchCategoryDetails();
       }
     } catch (error) {
-      console.error("Error while updating the category", error.response?.data?.message || error.message);toast.error(error.response?.data?.message || "Error while updating the category");
+      console.error("Error while updating the category", error);
+      toast.error(error.response?.data?.message || "Error while updating the category");
     }
   }
 
   return (
     <Dashboard activeMenu="Category">
-        <div className="my-5 mx-auto">
-
-          <div className="flex justify-between items-center mb-5">
-            <h2 className="text-2xl font-semibold">
-              All categories
-            </h2> 
-            <button 
-              onClick={() => setOpenCategoryModel(true)}
-              className="add-btn flex items-center gap-1 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-full font-medium transition-colors cursor-pointer">
-                <Plus size={15} />
-                  Add Category
-            </button>
-          </div>
-
-          <CategoryList categories={categoryData} onEditCategory={handleEditCategory} />
-
-          <Modal 
-            isOpen={openCategoryModel}
-            onClose={() => setOpenCategoryModel(false)}
-            title="Add Category">
-            <CategoryForm onAddCategory={handleAddCategory} />
-          </Modal>
-
-          <Modal 
-            isOpen={openEditCategoryModel}
-            onClose={() => {
-              setOpenEditCategoryModel(false)
-              setSelectedCategory(null)}}
-            title="Edit Category">
-            <CategoryForm 
-              initialCategoryData={selectedCategory}
-              onAddCategory={handleUpdateCategory}
-              isEditing={true}
-            />
-          </Modal>
-
+      <div className="my-5 mx-auto">
+        <div className="flex justify-between items-center mb-5">
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            All Categories
+          </h2> 
+          <button 
+            onClick={() => setOpenCategoryModel(true)}
+            className="flex items-center gap-1 px-4 py-2 bg-green-500 dark:bg-green-600 hover:bg-green-600 dark:hover:bg-green-700 text-white rounded-full font-medium transition-colors cursor-pointer">
+              <Plus size={15} />
+              Add Category
+          </button>
         </div>
+
+        <CategoryList categories={categoryData} onEditCategory={handleEditCategory} />
+
+        <Modal 
+          isOpen={openCategoryModel}
+          onClose={() => setOpenCategoryModel(false)}
+          title="Add Category">
+          <CategoryForm onAddCategory={handleAddCategory} />
+        </Modal>
+
+        <Modal 
+          isOpen={openEditCategoryModel}
+          onClose={() => {
+            setOpenEditCategoryModel(false)
+            setSelectedCategory(null)
+          }}
+          title="Edit Category">
+          <CategoryForm 
+            initialCategoryData={selectedCategory}
+            onAddCategory={handleUpdateCategory}
+            isEditing={true}
+          />
+        </Modal>
+      </div>
     </Dashboard>
   )
 }

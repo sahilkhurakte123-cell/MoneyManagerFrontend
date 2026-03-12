@@ -7,12 +7,11 @@ const Dashboard = ({children, activeMenu}) => {
   const {user} = useContext(AppContext);
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <NavBar activeMenu={activeMenu} />
       {user && (
-        <div className="flex ">
+        <div className="flex">
           <div className="max-[1080px]:hidden">
-            {/* sidebar content  */}
             <Sidebar activeMenu={activeMenu}/>
           </div>
 
